@@ -8,6 +8,13 @@ Framework: Playwright (sync_api)
 
 Browser Environment: Google Chrome (Headed Mode)
 
+💡 주요 트러블슈팅 및 구현 기술 (Key Highlights)
+1. 자동화 탐지 방지 (Bot Detection Bypass)
+컬리 웹사이트의 봇 차단 방화벽 및 렌더링 제한을 우회하기 위해 Chrome 실행 옵션(--disable-blink-features=AutomationControlled)과 실제 사용자 User-Agent 스푸핑 설정을 적용하여 테스트 안정성을 확보
+
+2. 동적 UI 및 예외 팝업 처리
+React 기반 모달 팝업 탐색 시 난수형 CSS 클래스명 대신 ARIA 속성([role="dialog"]) 및 텍스트 조건(button:has-text("확인"))을 활용하여 구조 변화에 강한 Locator를 설계했습니다. 또한 팝업 노출 애니메이션 시간에 대응하기 위해 명시적 대기(wait_for(state="visible")) 및 강제 클릭(force=True) 옵션을 적용했습니다
+
 🎯 주요 테스트 시나리오 (Test Scenarios)
 
 1. 로그인 예외 처리 (kurly_test_login.py) <br>
