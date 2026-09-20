@@ -1,3 +1,5 @@
+test case : https://docs.google.com/spreadsheets/d/1II3nf51xXIAmfcs0GJ66DoHcCgvOzl6RKPsHuyjW4ck/edit?usp=sharing
+
 🛒 컬리(Kurly) 웹 E2E UI 자동화 테스트 포트폴리오
 Playwright와 Python을 활용하여 컬리(Market Kurly) 웹사이트의 핵심 기능(로그인 예외 처리, PLP, 장바구니, 찜하기, 검색)을 자동화하고 검증하는 QA 프로젝트입니다.
 
