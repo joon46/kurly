@@ -4,23 +4,15 @@ from playwright.sync_api import sync_playwright
 def run_cart_tests():
     with sync_playwright() as p:
         
-        print("🔗 현재 로그인되어 켜져있는 크롬(127.0.0.1:9222)에 연결 중...")
-        
-        # IPv4 명시적 주소로 연결
-        browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222")
-        
-        # 현재 열려있는 탭 중에서 컬리 탭 찾기
-        context = browser.contexts[0]
-        page = None
-        
-        for p_item in context.pages:
-            if "kurly.com" in p_item.url:
-                page = p_item
-                break
-                
-        if not page:
-            page = context.pages[0]
-            page.goto("https://www.kurly.com/cart")
+        browser = p.chromium.launch(
+    headless=False,
+    args=[
+        "--disable-blink-features=AutomationControlled",
+        "--start-maximized"
+    ]
+)
+context = browser.new_context(no_viewport=True)
+page = context.new_page()
 
         print(f"📌 현재 제어할 페이지: {page.url}")
 
