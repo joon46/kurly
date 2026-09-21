@@ -5,14 +5,14 @@ def run_cart_tests():
     with sync_playwright() as p:
         
         browser = p.chromium.launch(
-    headless=False,
-    args=[
-        "--disable-blink-features=AutomationControlled",
-        "--start-maximized"
-    ]
-)
-context = browser.new_context(no_viewport=True)
-page = context.new_page()
+        headless=False,
+        args=[
+            "--disable-blink-features=AutomationControlled",
+            "--start-maximized"
+        ]
+    )
+        context = browser.new_context(no_viewport=True)
+        page = context.new_page()
 
         print(f"📌 현재 제어할 페이지: {page.url}")
 
