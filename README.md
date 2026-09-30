@@ -1,3 +1,5 @@
+요구사항 명세서 : https://docs.google.com/document/d/1dnklYi2_-U4y73JROqEUV7FRrpFltQvXs-S9TmuT1v8/edit?usp=sharing
+
 test case : https://docs.google.com/spreadsheets/d/1II3nf51xXIAmfcs0GJ66DoHcCgvOzl6RKPsHuyjW4ck/edit?usp=sharing
 
 🛒 컬리(Kurly) 웹 E2E UI 자동화 테스트 포트폴리오
