@@ -119,6 +119,35 @@ def run_search_tests():
         print(f"   ✅ SH_03 성공: '라볶이' 검색 결과 페이지 정상 이동 확인 (URL: {current_url})")
 
         # --------------------------------------------------
+        # [SH_04] 브랜드 연관검색어 노출
+        # --------------------------------------------------
+
+        search_input.fill("")  # 기존 입력값 지우기
+
+        brand_name = "해태"
+
+        # 키워드 입력
+        search_input.fill(brand_name)
+        
+        page.wait_for_timeout(1000)  # 연관검색어/자동완성 API 응답 대기
+    
+        # '해태'와 '브랜드관' 텍스트를 모두 포함하는 브랜드관 요소 찾기
+        # '해태'와 '브랜드관' span을 모두 품고 있는 브랜드관 div/li 항목 가져오기
+        brand_hall_item = page.locator(".search-autocomplete div, [role='listbox'] div") \
+                            .filter(has=page.locator("span", has_text=brand_name)) \
+                            .filter(has=page.locator("span", has_text="브랜드관")).first
+        
+        # '해태 브랜드관' 항목이 화면에 노출되는지 검증 (Enter를 치지 않고 확인)
+        is_visible = brand_hall_item.is_visible()
+        
+        print(f"\n[SH_04] '해태' 및 '브랜드관' 조합 요소 노출 여부: {is_visible}")
+        if is_visible:
+            print(f"수집된 텍스트 내용: '{brand_hall_item.inner_text().strip()}'")
+            
+        assert is_visible, f"[SH_04 FAILED] 검색창 하단 추천 레이어에서 '{brand_name}'과 '브랜드관'이 포함된 항목을 찾지 못했습니다."
+        print(f"[SH_04 SUCCESS] 엔터 미입력 상태에서 '{brand_name}' 브랜드관 추천 항목 정상 노출 확인 완료!")
+
+        # --------------------------------------------------
         print("\n==================================================")
         print("🎉 모든 검색 기능 테스트 케이스 성공적으로 완료!")
         print("==================================================")
